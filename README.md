@@ -1,3 +1,3 @@
 # ASCII Table
 
-## A beautiful, searchable, simple, responseive ASCII table.
+## An elegant yet simple ASCII table.

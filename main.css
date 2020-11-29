@@ -1,6 +1,12 @@
 body {
     background-color: gray;
 }
+
+footer {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .flex-item {
     flex: 1;
 }
@@ -8,7 +14,7 @@ body {
 #flex-container {
     display: flex;
     flex-direction: row;
-    min-height: 100vh;
+    min-height: 80vh;
     margin: 10px;
     padding: 50px;
 }

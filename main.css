@@ -1,5 +1,6 @@
 body {
     background-color: gray;
+    min-height: 100vh;
 }
 
 footer {
@@ -11,10 +12,10 @@ footer {
     flex: 1;
 }
 
-#flex-container {
+.flex-container {
     display: flex;
     flex-direction: row;
-    min-height: 80vh;
+    /* min-height: 100vh; */
     margin: 10px;
     padding: 50px;
 }
@@ -36,4 +37,28 @@ footer {
 #char {
     font-size: 100px;
     text-align: center;
+}
+
+.buttonContainer {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.tableButton {
+    background-color: transparent;
+    border: dodgerblue solid 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: dodgerblue
+}
+
+.hidden {
+    display: none;
+}
+.showBlock {
+    display: block;
+}
+
+#asciiTable {
+    width: 100%;
 }

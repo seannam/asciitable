@@ -112,7 +112,7 @@ function toBin(asciiCode) {
     return toBase(2, asciiCode);
 }
 function toHex(asciiCode) {
-    return toBase(16, asciiCode);
+    return toBase(16, asciiCode).padStart(8, '0');
 }
 function toOct(asciiCode) {
     return toBase(8, asciiCode).padStart(3, '0');
@@ -125,6 +125,9 @@ function toBase(b, asciiCode) {
  * Like jQuery ready() but only supported on > IE8 
  */
 document.addEventListener('DOMContentLoaded', function () {
+    
+    document.getElementById("asciiTable").appendChild(generateAsciiTable());
+
     // Listen for key presses.
     document.body.addEventListener("keydown", event => {
         // Only for the printable ASCII characters, code 32-127.
@@ -165,4 +168,85 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+    // Show table
+    document.getElementById("showTableButton").addEventListener("click", event => {
+        let container = document.getElementById("container");
+        let table = document.getElementById("asciiTable");
+        let showButton = document.getElementById("showTableButton");
+
+        if (table.classList.contains("hidden")) {
+            table.classList.remove("hidden");
+            table.classList.add("showBlock");
+            container.classList.add("hidden");
+            showButton.innerText = "Back";
+        } else {
+            table.classList.remove("showBlock");
+            table.classList.add("hidden");
+            container.classList.remove("hidden");
+            showButton.innerText = "Table";
+        }
+    });
+    
 }, false);
+
+function generateAsciiTable() {
+    // Generate the ASCII Table.
+    var table = document.createElement("table");
+
+    // Header
+    var thead = document.createElement("thead");
+    var thChar = document.createElement("td");
+    var thHex = document.createElement("td");
+    var thOct = document.createElement("td");
+    var thBin = document.createElement("td");
+    var thHTML = document.createElement("td");
+
+    var char = document.createTextNode("Character");
+    var hex = document.createTextNode("Hexadecimal");
+    var oct = document.createTextNode("Octal");
+    var bin = document.createTextNode("Binary");
+    var HTML = document.createTextNode("HTML");
+
+    var tbody = document.createElement("tbody");
+    var trow = document.createElement("tr");
+    thChar.appendChild(char);
+    thHex.appendChild(hex);
+    thOct.appendChild(oct);
+    thBin.appendChild(bin);
+    thHTML.appendChild(HTML);
+
+    trow.append(thChar, thHex, thOct, thBin, thHTML);
+
+    thead.classList.add("thead-dark");
+    thead.appendChild(trow);
+    table.appendChild(thead);
+
+    // Body
+    for (const code in asciiTable) {
+        var trow = document.createElement("tr");
+
+        var tdChar = document.createElement("td");
+        var tdHex = document.createElement("td");
+        var tdOct = document.createElement("td");
+        var tdBin = document.createElement("td");
+        var tdHTML = document.createElement("td");
+
+        var char = document.createTextNode(code);
+        var hex = document.createTextNode(toHex(code));
+        var oct = document.createTextNode(toOct(code));
+        var bin = document.createTextNode(toBin(code));
+        var html = document.createTextNode(toHTML(code));
+
+        tdChar.appendChild(char);
+        tdHex.appendChild(hex);
+        tdOct.appendChild(oct);
+        tdBin.appendChild(bin);
+        tdHTML.appendChild(html);
+
+        trow.append(tdChar, tdHex, tdOct, tdBin, tdHTML);
+        tbody.append(trow);
+    }
+    table.appendChild(tbody);
+
+    return table;
+}

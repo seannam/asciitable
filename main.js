@@ -106,7 +106,7 @@ const asciiTable = {
  */
 
 function toHTML(asciiCode) {
-    return `&#${asciiCode}`;
+    return `&#${asciiCode};`;
 }
 function toBin(asciiCode) {
     return toBase(2, asciiCode);

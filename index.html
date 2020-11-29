@@ -2,17 +2,57 @@
     <head>
         <meta charset="utf-8">
         <title>ASCII Table</title>
+        <link rel="icon" type="image/png" href="favicon_io/favicon.ico">
         <link rel="stylesheet" href="main.css"></style>
         <script src="main.js"></script>
+        <link rel="stylesheet" href="bootstrap.min.css">
     </head>
     <body>
-        <div id="flex-container">
-            <div class='flex-item' id="char"></div>
-            <div class='flex-item' id="dec"></div>
-            <div class='flex-item' id="hex"></div>
-            <div class='flex-item' id="oct"></div>
-            <div class='flex-item' id="bin"></div>
-            <div class='flex-item' id="html"></div>
+        <div id='container'>
+            <div class="flex-item" id="char"></div>
+            <div id="flex-container">
+                <div class="flex-item card">
+                    <div class="card-header">
+                        Character
+                    </div>
+                    <div class="card-body">
+                        <div id="dec"></div>
+                    </div>
+                </div>
+                <div class="flex-item card">
+                    <div class="card-header">
+                        Hexadecimal
+                    </div>
+                    <div class="card-body">
+                        <div id="hex"></div>
+                    </div>
+                </div>
+                <div class="flex-item card">
+                    <div class="card-header">
+                        Octal
+                    </div>
+                    <div class="card-body">
+                        <div id="oct"></div>
+                    </div>
+                </div>
+                <div class="flex-item card">
+                    <div class="card-header">
+                        Binary
+                    </div>
+                    <div class="card-body">
+                        <div id="bin"></div>
+                    </div>
+                </div>
+                <div class="flex-item card">
+                    <div class="card-header">
+                        HTML
+                    </div>
+                    <div class="card-body">
+                        <div id="html"></div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <button></button>
     </body>
 </html>

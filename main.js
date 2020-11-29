@@ -112,7 +112,7 @@ function toBin(asciiCode) {
     return toBase(2, asciiCode);
 }
 function toHex(asciiCode) {
-    return toBase(16, asciiCode).padStart(8, '0');
+    return `0x${toBase(16, asciiCode).padStart(8, '0')}`;
 }
 function toOct(asciiCode) {
     return toBase(8, asciiCode).padStart(3, '0');
@@ -192,16 +192,19 @@ document.addEventListener('DOMContentLoaded', function () {
 function generateAsciiTable() {
     // Generate the ASCII Table.
     var table = document.createElement("table");
+    table.classList.add("table");
 
     // Header
     var thead = document.createElement("thead");
-    var thChar = document.createElement("td");
-    var thHex = document.createElement("td");
-    var thOct = document.createElement("td");
-    var thBin = document.createElement("td");
-    var thHTML = document.createElement("td");
+    var thChar = document.createElement("th");
+    var thDec = document.createElement("th");
+    var thHex = document.createElement("th");
+    var thOct = document.createElement("th");
+    var thBin = document.createElement("th");
+    var thHTML = document.createElement("th");
 
     var char = document.createTextNode("Character");
+    var dec = document.createTextNode("Decimal");
     var hex = document.createTextNode("Hexadecimal");
     var oct = document.createTextNode("Octal");
     var bin = document.createTextNode("Binary");
@@ -209,41 +212,47 @@ function generateAsciiTable() {
 
     var tbody = document.createElement("tbody");
     var trow = document.createElement("tr");
+
     thChar.appendChild(char);
+    thDec.appendChild(dec);
     thHex.appendChild(hex);
     thOct.appendChild(oct);
     thBin.appendChild(bin);
     thHTML.appendChild(HTML);
 
-    trow.append(thChar, thHex, thOct, thBin, thHTML);
+    trow.append(thChar, thDec, thHex, thOct, thBin, thHTML);
 
     thead.classList.add("thead-dark");
     thead.appendChild(trow);
     table.appendChild(thead);
 
     // Body
-    for (const code in asciiTable) {
+    for (const key in asciiTable) {
+        let code = asciiTable[key];
         var trow = document.createElement("tr");
 
         var tdChar = document.createElement("td");
+        var tdDec = document.createElement("td");
         var tdHex = document.createElement("td");
         var tdOct = document.createElement("td");
         var tdBin = document.createElement("td");
         var tdHTML = document.createElement("td");
 
-        var char = document.createTextNode(code);
+        var char = document.createTextNode(key);
+        var dec = document.createTextNode(code);
         var hex = document.createTextNode(toHex(code));
         var oct = document.createTextNode(toOct(code));
         var bin = document.createTextNode(toBin(code));
         var html = document.createTextNode(toHTML(code));
 
         tdChar.appendChild(char);
+        tdDec.appendChild(dec);
         tdHex.appendChild(hex);
         tdOct.appendChild(oct);
         tdBin.appendChild(bin);
         tdHTML.appendChild(html);
 
-        trow.append(tdChar, tdHex, tdOct, tdBin, tdHTML);
+        trow.append(tdChar, tdDec, tdHex, tdOct, tdBin, tdHTML);
         tbody.append(trow);
     }
     table.appendChild(tbody);

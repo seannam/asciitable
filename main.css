@@ -64,7 +64,9 @@ footer {
 }
 
 #mobile-input input {
-    width: calc(100%-10px);
-    margin: 10px;
-    font-size: 100px;
+    width: calc(80%);
+    margin: 0px 10%;
+    font-size: 50px;
+    border: 1px solid lightgray;
+    text-align: center;
 }

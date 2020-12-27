@@ -167,7 +167,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById(`${k}`).innerText = text;
             }
         }
+
+        // Clear input if manually entered
+        const mobileInput = document.querySelector('#mobile-input input');
+        if (mobileInput !== null) {
+            mobileInput.value = '';
+        }
     });
+
+    // Support touchscreens
+    const mobileInputDiv = document.querySelector('#mobile-input');
+    document.addEventListener('touchstart', event => {
+        if (document.querySelector('#mobile-input input') !== null) return;
+        if (event.target.tagName === 'BUTTON') return;
+      
+        const input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        mobileInputDiv.appendChild(input);
+      
+        // For some reason, the focus is immediately lost unless there is a delay on setting the focus
+        setTimeout(() => {
+          input.focus();
+        }, 100);
+    });
+
     // Show table
     document.getElementById("showTableButton").addEventListener("click", event => {
         let container = document.getElementById("container");

@@ -62,3 +62,9 @@ footer {
 #asciiTable {
     width: 100%;
 }
+
+#mobile-input input {
+    width: calc(100%-10px);
+    margin: 10px;
+    font-size: 100px;
+}
